@@ -1,2 +1,2 @@
 # weapp-girls
-wechat app of girls scrapy spider via Node.Js
+wechat app of girls scrapy spider via Node.js
