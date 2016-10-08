@@ -32,9 +32,13 @@ app.get('/tags', function(req, res){
         var t1 = new Date().getTime();
         $('#main .panel-heading ul.nav li a').each(function (idx, element) {
             var $element = $(element);
+            var hrefStr = $element.attr('href');
+            var cid = hrefStr.match(/cid=(\d)/);
+            cid = isEmpty(cid) ? "0" : cid[1];
             items.push({
-                title: $element.text(),
-                href: $element.attr('href')
+                title : $element.text(),
+                href : hrefStr,
+                cid : cid,
             });
         });
         res.send(items);
