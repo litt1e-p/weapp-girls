@@ -4,8 +4,11 @@ charset(superagent);
 var cheerio = require('cheerio');
 var express = require('express');
 var app = express();
+var https = require('https');
+var fs = require('fs');
 
 var baseUrl = 'http://www.dbmeinv.com';
+const successCode = 0, failCode = -1;
 
 function isEmpty(obj){
     for (let i in obj){
@@ -23,13 +26,13 @@ app.get('/tags', function(req, res){
     superagent.get(baseUrl)
     .charset('utf-8')
     .end(function (err, sres) {
+        var items = [];
         if (err) {
             console.log('ERR: ' + err);
-            return next(err);
+            res.json({code: failCode, msg: err, sets:items});
+            return;
         }
         var $ = cheerio.load(sres.text);
-        var items = [];
-        var t1 = new Date().getTime();
         $('#main .panel-heading ul.nav li a').each(function (idx, element) {
             var $element = $(element);
             var hrefStr = $element.attr('href');
@@ -41,7 +44,8 @@ app.get('/tags', function(req, res){
                 cid : cid,
             });
         });
-        res.send(items);
+        // res.send(items);
+        res.json({code: successCode, msg: "", data:items});
     });
 });
 
@@ -74,7 +78,8 @@ app.get('/girls', function(req, res){
                 smallSrc : isEmpty(thumbImgSrc) ? "" : thumbImgSrc.replace('bmiddle', 'small'),
             });
         });
-        res.send(items);
+        // res.send(items);
+        res.json({code: successCode, msg: "", data:items});
     });
 });
 
@@ -84,6 +89,15 @@ app.get('/girls', function(req, res){
 //http://ww2.sinaimg.cn/bmiddle/0060lm7Tgw1f8kmkawp8zj30dw0dwq4j.jpg
 //http://ww2.sinaimg.cn/small/0060lm7Tgw1f8kmkawp8zj30dw0dwq4j.jpg
 
-app.listen(3000, function(req, res){
+// app.listen(3000, function(req, res){
+//     console.log('server is running on port 3000');
+// });
+var options = {
+	key: fs.readFileSync('./keys/server.key'),
+	ca: [fs.readFileSync('./keys/ca.crt')],
+	cert: fs.readFileSync('./keys/server.crt')
+};
+https.createServer(options, app).listen(3000, function(req, res){
+    // res.writeHead(200);
     console.log('server is running on port 3000');
 });
