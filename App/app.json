@@ -1,0 +1,37 @@
+{
+    "pages" : [
+        "pages/home/home",
+        "pages/settings/settings"
+    ],
+    "window" : {
+        "backgroundTextStyle":"light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "we-girls",
+        "navigationBarTextStyle":"black",
+        "windowBackground": "#efeff4"
+    },
+    "tabBar" : {
+        "color" : "#999",
+        "selectedColor" : "#46bd3c",
+        "borderStyle" : "white",
+        "backgroundColor" : "#fefefe",
+        "list" : [
+            {
+                "text" : "home",
+                "pagePath" : "pages/home/home",
+                "iconPath" : "images/tabBar/tabbar_home_normal.png",
+                "selectedIconPath" : "images/tabBar/tabbar_home_selected.png"
+            },
+            {
+                "text" : "setting",
+                "pagePath" : "pages/settings/settings",
+                "iconPath" : "images/tabBar/tabbar_setting_normal.png",
+                "selectedIconPath" : "images/tabBar/tabbar_setting_selected.png"
+            }
+        ]
+    },
+    "networkTimeout" : {
+        "request" : 12000
+    },
+    "debug" : false
+}

@@ -1,0 +1,19 @@
+/**settings.wxss**/
+.container-settings {
+    height:1200rpx;
+}
+.img-avatar {
+  width: 258rpx;
+  height: 258rpx;
+  margin: 20rpx auto;
+  margin-top: 40rpx;
+  border-radius: 50%;
+  display: block;
+}
+
+.link-text {
+  color: #46bd3c;
+  margin-top: 20px;
+  position: absolute;
+  left: 20%;
+}

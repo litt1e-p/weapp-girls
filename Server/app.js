@@ -44,7 +44,6 @@ app.get('/tags', function(req, res){
                 cid : cid,
             });
         });
-        // res.send(items);
         res.json({code: successCode, msg: "", data:items});
     });
 });
@@ -56,7 +55,7 @@ app.get('/girls', function(req, res){
     page = !isEmpty(page) ? page : '1';
     var route = '/dbgroup/show.htm?cid=' + cid + '&pager_offset=' + page;
     res.header("Content-Type", "application/json; charset=utf-8");
-    superagent.get(baseUrl)
+    superagent.get(baseUrl+route)
     .charset('utf-8')
     .end(function (err, sres) {
         if (err) {
@@ -78,20 +77,10 @@ app.get('/girls', function(req, res){
                 smallSrc : isEmpty(thumbImgSrc) ? "" : thumbImgSrc.replace('bmiddle', 'small'),
             });
         });
-        // res.send(items);
         res.json({code: successCode, msg: "", data:items});
     });
 });
 
-//http://www.dbmeinv.com/dbgroup/show.htm?cid=%@&pager_offset=%@
-//http://www.dbmeinv.com/?pager_offset=2
-//http://ww2.sinaimg.cn/large/0060lm7Tgw1f8kmkawp8zj30dw0dwq4j.jpg
-//http://ww2.sinaimg.cn/bmiddle/0060lm7Tgw1f8kmkawp8zj30dw0dwq4j.jpg
-//http://ww2.sinaimg.cn/small/0060lm7Tgw1f8kmkawp8zj30dw0dwq4j.jpg
-
-// app.listen(3000, function(req, res){
-//     console.log('server is running on port 3000');
-// });
 var options = {
 	key: fs.readFileSync('./keys/server.key'),
 	ca: [fs.readFileSync('./keys/ca.crt')],
