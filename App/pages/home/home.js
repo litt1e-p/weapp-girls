@@ -20,6 +20,7 @@ Page({
       navItems: [],
       navBtnSelectIdx: 0,
       page: 1,
+      mid: '',
       hasMore: true,
       scrollTop: 1,
       showLoadMore: false
@@ -56,7 +57,7 @@ Page({
   },
   fetchImgs(cid) {
       this.showLoading('loading...');
-      return request({ method: 'GET', url: util.getUrl('/girls', [{c:!util.isEmpty(cid)?cid:0}, {p:this.data.page}])});
+      return request({ method: 'GET', url: util.getUrl('/girls', [{c:!util.isEmpty(cid)?cid:'xinggan'}, {p:this.data.page}, {m: this.data.mid}])});
   },
   showPreview(event) {
       if (this.data.showActionsSheet) {
@@ -120,7 +121,7 @@ Page({
       let index = e.target.dataset.index;
       let cid = e.target.dataset.cid;
       if (index != this.navBtnSelectIdx) {
-          this.setData({navBtnSelectIdx: index, page: 1});
+          this.setData({navBtnSelectIdx: index, page: 1, mid: ''});
           this.fetchImgs(cid).then(resp => {
               this.imgRespHandler(resp, true);
           });
@@ -128,15 +129,15 @@ Page({
   },
   imgRespHandler(resp, flush) {
       this.hideLoading();
-      if (resp.code !== 0) {
+      if (resp.code != 0) {
           this.showToast('load failed, try again...');
-          this.setData({page: page--});
+          this.setData({page: this.data.page--});
           return;
       }
       if (util.isEmpty(resp.data)) {
           this.setData({hasMore: false});
           this.showToast('all loaded...');
-          this.setData({page: page--});
+          this.setData({page: this.data.page--});
           return;
       }
       this.showToast('load successfully');
@@ -145,7 +146,7 @@ Page({
           resp.data[index].thumbSrc = util.imgUrlFix(resp.data[index].thumbSrc);
           resp.data[index].smallSrc = util.imgUrlFix(resp.data[index].smallSrc);
       }
-      this.setData({ 'imgList': flush ? resp.data : this.data.imgList.concat(resp.data) });
+      this.setData({ 'imgList': flush ? resp.data : this.data.imgList.concat(resp.data), 'mid': resp.mid });
       this.renderImgList();
   },
   onPullDownRefresh() {
