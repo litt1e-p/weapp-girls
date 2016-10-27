@@ -21,4 +21,4 @@ wechat app of girls' photos scrapy spider via Node.js
 
 # Screenshot
 
-<img src="screenshot.gif" width="320">
+<img src="screenshot02.gif" width="320">
