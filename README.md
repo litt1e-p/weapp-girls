@@ -14,11 +14,15 @@ wechat app of girls' photos scrapy spider via Node.js
 ```
 1. npm install --save
 2. cd Server
-3. node app-douban.js / app-meizitu.js
+3. node app-douban.js 
+  //or
+  node app-meizitu.js
 4. add it into your MINA dev tools as a non-appId project and run
 5. done! 🎉🎉
 ```
 
 # Screenshot
+
+<img src="screenshot02.gif" width="320">
 
 <img src="screenshot.gif" width="320">
