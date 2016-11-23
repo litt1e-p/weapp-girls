@@ -17,7 +17,7 @@ wechat app of girls' photos scrapy spider via Node.js
 3. node app-douban.js 
   //or
   node app-meizitu.js
-4. add it into your MINA dev tools as a non-appId project and run
+4. add it into your MINA dev tools as a non-appId project with path 'yourProjectPath/weapp-girls/App' and run
 5. done! 🎉🎉
 ```
 
