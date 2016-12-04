@@ -26,3 +26,7 @@ wechat app of girls' photos scrapy spider via Node.js
 <img src="screenshot02.gif" width="320">
 
 <img src="screenshot.gif" width="320">
+
+# Release Notes
+
+- fix bug of Promise import in MINA v0.11.112300
