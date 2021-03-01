@@ -20,9 +20,9 @@
     },
     "homepage": "https://github.com/litt1e-p/weapp-girls#readme",
     "dependencies": {
-        "cheerio": "^0.22.0",
-        "express": "^4.14.0",
-        "superagent": "^2.3.0",
-        "superagent-charset": "^1.1.1"
+        "cheerio": "^1.0.0-rc.5",
+        "express": "^4.17.1",
+        "superagent": "^6.1.0",
+        "superagent-charset": "^1.2.0"
     }
 }
